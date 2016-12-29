@@ -1,0 +1,106 @@
+.\" Process this file with
+.\" groff -man -Tascii foo.1
+.\" 
+.TH "PALINSESTO.CFG" "5" "28 Jan 2007" "" ""
+.SH "NAME"
+palinsesto.cfg \- The default programming schedule file for the soma daemon.
+.SH "DESCRIPTION"
+.I palinsesto.cfg
+The default programming schedule file for the soma daemon. These are the file configuration tags:
+.SH "OPTIONS"
+.TP 
+.BI "Palinsesto"
+This is the start and end tag for the transmission. In the palinsesto.cfg file may be a lot of transmissions, and all of them start and ends with it. 
+.TP 
+.BI "Description = Description"
+This is the description of the broadcast. 
+.TP 
+.BI "Priority = true/false"
+If this flag is activated, and there are more one transmissions in the same time, somad schedules this transmission before other. If the player (ProgramItem in soma.cfg) return some error, somad use the next transmission and after one operation tries with the transmission with priority true.
+.TP 
+.BI "Start = YYYY\-MM\-DD DAY HH:MM"
+This is the start time of the broadcast. The elements are:
+
+YYYY\-MM\-DD \- Year, Month, Day. Optional.
+
+DAY \- Week day. The format are: Sun, Mon, Tue, Wed, Thu, Fri, Sat or: 0, 1, 2, 3, 4, 5, 6. Optional.
+
+HH:MM \- Hours and Minuts.
+
+You can do like it: 2004\-02\-10 Sun 12:00 or set 'x' for included tags: xxxx\-xx\-17 Fri 12:00 \- and every Friday 17, 12:00 start your trasmission. Or: xxxx\-xx\-17 Fri xx:10 \- every 10 minuts of Friday 17 start your trasmission. 
+
+This an required setting and the soma daemon will not start without it.
+.TP 
+.BI "Stop = YYYY\-MM\-DD DAY HH:MM"
+This is the stop time of the broadcast.  Times should be as start. This is an required setting and the soma daemon will not start without it.
+.TP 
+.BI "TimeContinued = true/false"
+With TimeContinued=true: Start = "2004\-01\-09 x 10:00" Stop = "2005\-02\-10 x 12:00" somad plays every day, always, and stops the trasmission the 2005\-02\-10 at 12:00.
+
+With TimeContinued=false: Start = "2004\-01\-09 x 10:00" Stop = "2005\-02\-10 x 12:00" Every day, 10:00\-12:00 there is the trasmission.
+
+Default: false
+.TP 
+.BI "Type = files/stream/silence/module"
+This tells if sound used by the broadcast are in files on the local hard drive or in a remote one (files), is from a stream on the internet (stream), or from a soma module (module).  Use 'silence' if you want to stream nothing. This is an required setting and the soma daemon will not start without it.
+.TP 
+.BI "RandomItem = true/false"
+If set to true soma plays the selected Item files at random.  If not set soma defaults to false.
+.TP 
+.BI "RandomSpot = true/false"
+If set to true soma plays the selected Spot files at random.  If not set soma defaults to false.
+.TP 
+.BI "PathItem = fullpath_to_items1, fullpath_to_item2, etc."
+This is the full path to the directories/files/remote_files where the items are located. If you set \fBType=File\fR and do not set \fBPathItem\fR the soma daemon will run but nothing will be played. You can put directories and them, the files are readed recurvise.
+.TP 
+.BI "PathSpot = fullpath_to_spots1, fullpath_to_spots2, etc."
+This is the full path to the directories/files/remote_files where the broadcast spots are located. Works like PathItem.
+.TP 
+.BI "Stream = url"
+If \fBType=Stream\fR, the full url of the stream.
+.TP 
+.BI "Module = module"
+If \fBType=module\fR relative module path or absolute
+path. If you set a relative path, somad search your module on PathModules of soma.cfg file (see \fBsoma.cfg (5)\fR).
+.TP 
+.BI "SoftStop = true/false"
+If set to true, if the soma daemon receives a command from a soma client it will finish playing the current item before it executes the command. In this way, soma expect the end of the input before change the trasmission, for example. If set to false, if the soma daemon receives a \fBStop\fR command from a soma client the daemon will stop immediately. Default: false.
+.TP 
+.BI "Jingle = PATH"
+The file will play at the beginning of the broadcast.
+.TP 
+.BI "PreSpot = PATH"
+The file will play at the beginning of a break of spots.
+.TP 
+.BI "PostSpot = PATH"
+The file will play at the finishing of a break of spots.
+.TP 
+.BI "RatioItem = int"
+This is the number of items played before the spot(s) are played. The default is 1. If set to 0, this trasmission plays ONLY spots.
+.TP 
+.BI "RatioSpot = int"
+This is the number of spots to be played after the items have played. The default is 0. As an example, if you set \fBRatioItem=5\fR and \fBRatioSpot=1\fR, after plays 5 Items in the transmission (5 songs for example), somad will play 1 Spot. But If \fBRatioItem\fR and \fBRatioSpot\fR are 0, somad don't play nothing.
+.TP 
+.BI "SpotController = true/false"
+If set to true, somad does not use your PathSpot files, but uses the spot.cfg file and actives the automatic controller of spots.
+.P
+The path of Jingle, or PathItem or other path, can be relative to DistribuitedPath directories (see \fBsoma.cfg (5)\fR) with the tag ':'. Examples: Jingle = ":file.ogg" or PathItem = ":/file.wav".
+
+.SH "AUTHOR"
+.nf 
+Somad written by Andrea Marchesini <bakunin@autistici.org>
+Man page written by Joshua Eichen <joshua@bitmine.net.net>
+Man page updated by Martin Zelaia <martintxo@sindominio.net> for soma\-2.4.
+.SH "SEE ALSO"
+.BR somad (1),
+.BR soma.cfg (5),
+.BR spot.cfg (5),
+.BR somaclient (1),
+.BR somacheck (1),
+.BR somaplayer (1)
+.BR somax (1),
+.BR somax\-editor (1)
+.BR somax\-nextitem (1)
+.BR somax\-config (1)
+
+http://www.somasuite.org/

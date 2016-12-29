@@ -1,0 +1,43 @@
+to write a module for soma you need to create a library .so which this functions
+useful for somad:
+
+int module_init(char *);
+  to initialize the module. Must return 0 if everything is OK, otherwise
+  somad doesn't let the module continue.
+
+char *module_run(char *);
+  this must return something *good* for an audio sw such as mpg123 mplayer. 
+  this return value will be freed by somad with a free() when not null.
+
+char **module_exec(char *);
+  this must return something *good* for array with NULL argoment as the last.
+  this return value will be freed by somad with this code:
+
+     char **list, **old;
+
+     old=list=module_exec(...);
+     ...
+     while(*list) {
+        free(*list);
+        list++;
+     }
+     free(old);
+
+char **module_list(char*);
+  this must return somthing *good* from array with NULL argoment as the last.
+  this return value will be freed by somad with a free when not null.
+
+int module_quit(char *);
+  the exit module function
+
+char *module_name(void);
+  the module name
+
+int module_time_stop(char *);
+  Must return a disactivation time of the play so that it sends back to 
+  another module_run.
+
+You must include and read the file soma/soma.h which contains all the DEFINE 
+and all the functions useful for the module.
+
+good hacking!   

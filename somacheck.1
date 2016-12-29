@@ -1,0 +1,34 @@
+.TH SOMACHECK 1 "9 July 2005" SomaCheck "User Command"
+.SH NAME
+somacheck \- check the configuration files for the Soma daemon
+.SH SYNOPSIS
+.B somacheck [-c 
+.I config_file
+.B ] [-p
+.I palinsesto_file
+.B ] [-h]
+.SH DESCRIPTION
+somacheck runs a file syntax test on a configuration, palinsesto or spot file. 
+It parses the files and either reports Syntax Ok or detailed information 
+about the particular syntax error.
+.SH OPTIONS
+.IP "-c, --config" 
+Check this configuration file. 
+.IP "-p, --palinsesto"
+Check this palinsesto file.
+.IP "-s, --spot"
+Check this spot file.
+.IP "-h, --help"
+Output a short summary of available command line options.
+.SH AUTHOR
+.nf
+Somad written by Andrea Marchesini <bakunin@autistici.org>
+Man page written by Joshua Eichen <joshua@bitmine.net.net>
+.SH "SEE ALSO"
+.BR somad (1),
+.BR soma.cfg (5),
+.BR palinsesto.cfg (5),
+.BR spot.cfg (5),
+.BR somaclient (1),
+.BR somaplayer (1),
+.BR somax-config (1)

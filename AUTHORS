@@ -1,0 +1,27 @@
+Andrea Marchesini - bakunin
+	email: bakunin@autistici.org
+	url: http://autistici.org/bakunin
+
+Athanasios Oikonomou - klaus
+	email: klaus@mycosmos.gr
+
+Martintxo
+	email: martintxo@sindominio.net
+
+Thanks:
+	mkt0 - ufficial beta tester :)
+
+	All team reload http://reload.realityhacking.org:
+		nike, bomboclat, blicero, megabug, c1cc10, daniele,
+		subvertao (or subconscio :), tropiko, zanzara
+
+This sources require:
+- libavformat (http://ffmpeg.sourceforge.net/index.php)            Licence: GPL
+- libconfuse (http://www.nongnu.org/confuse/)                      Licence: GPL
+- libghthash (http://www.ipd.bth.se/ska/sim_home/libghthash.html)  Licence: GPL
+- libxml2 (http://xmlsoft.org/)                                    Licence: MIT
+- libreadline (http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html)
+                                                                   Licence: GPL
+- openssl (http://www.openssl.org/)                                Licence: BSD
+
+

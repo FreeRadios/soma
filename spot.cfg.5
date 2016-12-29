@@ -1,0 +1,65 @@
+.\" Process this file with
+.\" groff -man -Tascii foo.1
+.TH "SPOT.CFG" "5" "28 Jan 2007" "" ""
+.SH "NAME"
+spot.cfg \- The default programming schedule file of spot for the soma daemon.
+.SH "DESCRIPTION"
+.I spot.cfg
+The default programming schedule file of spot for the soma daemon. These are the file configuration tags:
+.SH "OPTIONS"
+.TP 
+.BI "Spot"
+This is the start and end tag for the spot block. In the spot.cfg file may be a lot of spot blocks, and all of them start and ends with it.
+.TP 
+.BI "Description = Description"
+This is the description of the spot element. 
+.TP 
+.BI "Start = YYYY\-MM\-DD DAY HH:MM"
+This is the start time of the spot element. The elements are:
+
+YYYY\-MM\-DD \- Year, Month, Day. Optional.
+
+DAY \- Week day. The format are: Sun, Mon, Tue, Wed, Thu, Fri, Sat or: 0, 1, 2, 3, 4, 5, 6. Optional.
+
+HH:MM \- Hours and Minuts.
+
+You can do like it: 2004\-02\-10 Sun 12:00 or set 'x' for included tags: xxxx\-xx\-17 Fri 12:00 \- and every Friday 17, 12:00 start your trasmission. Or: xxxx\-xx\-17 Fri xx:10 \- every 10 minuts of Friday 17 start your trasmission.
+
+This an required setting and the soma daemon will not start without it.
+.TP 
+.BI "Stop = YYYY\-MM\-DD DAY HH:MM"
+This is the stop time of the spot element.  Times should be as start. This is an required setting and the soma daemon will not start without it.
+.TP 
+.BI "TimeContinued = true/false"
+With TimeContinued=true: Start = "2004\-01\-09 x 10:00" Stop = "2005\-02\-10 x 12:00" somad plays every day, always, and stops the trasmission the 2005\-02\-10 at 12:00.
+
+With TimeContinued=false: Start = "2004\-01\-09 x 10:00" Stop = "2005\-02\-10 x 12:00" Every day, 10:00\-12:00 there is the trasmission.
+
+Default: false
+.TP 
+.BI "Repeat = number"
+If you set this flag, somad sends this spot number times on day.
+.TP 
+.BI "Path = fullpath_to_items1, fullpath_to_item2, etc."
+This is the full path to the directories/files/remote_files where the spots are located.
+.P
+The path of spot files can be relative to DistribuitedPath directories (see \fBsoma.cfg (5)\fR) with the tag ':'. Example: Path = ":/file.wav".
+
+.SH "AUTHOR"
+.nf 
+Somad written by Andrea Marchesini <bakunin@autistici.org>
+Man page written by Joshua Eichen <joshua@bitmine.net.net>
+Man page updated by Martin Zelaia <martintxo@sindominio.net> for soma\-2.4.
+.SH "SEE ALSO"
+.BR somad (1),
+.BR palinsesto.cfg (5),
+.BR soma.cfg (5),
+.BR somaclient (1),
+.BR somacheck (1),
+.BR somaplayer (1),
+.BR somax (1),
+.BR somax\-editor (1)
+.BR somax\-nextitem (1)
+.BR somax\-config (1)
+
+http://www.somasuite.org/

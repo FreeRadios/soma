@@ -1,0 +1,142 @@
+.\" Process this file with
+.\" groff -man -Tascii foo.1
+.\" 
+.TH "SOMA.CFG" "5" "28 Jan 2007" "" ""
+.SH "NAME"
+soma.cfg \- Configuration file for the soma daemon.
+.SH "DESCRIPTION"
+.I soma.cfg
+is the configuration file for the soma daemon. These are the file configuration tags:
+.SH "OPTIONS"
+.TP 
+.BI "User=" <user>
+The soma daemon is run as this user.  If not set soma will run as the user who
+start it.
+.TP 
+.BI "Group=" <group>
+The soma daemon is run as this group.  If not set soma will run as the group who
+start it.
+.TP 
+.BI "Background=" <True/False>
+If set to True somad daemon runs as a daemon.  If not set or set to False soma
+runs in the foreground all messages are printed to standard out.
+.TP 
+.BI "UnixSocket=" <True/False>
+If set to True soma daemon opens a unix socket (and use UnixPath value). If not set or set to False soma opens a tcp socket (and use ServerName, Port, HostDeny and Hostallow values). 
+.TP 
+.BI "UnixPath=" <path>
+If you set to TRUE UnixSocket flag, somad open a unix socket. Default /tmp/somad.sock. With this flags you can change this value.
+.TP 
+.BI "ServerName=" <servername>
+If set it only accepts connections to that server.  If not set accepts all connections. Default is not set (0.0.0.0 so any interfaces).
+.TP 
+.BI "Port=" <port>
+The soma deamon listens on this port.  If not set it listens on port 12521.
+.TP 
+.BI "Listen=" <number_clients_at_the_same_time>
+This is the number of client that can be connected at the same time.  If not set soma defaults to 5.
+.TP 
+.BI "Ssl" = <true/false>
+If you set Ssl tag "true", somad actives the admin interface with ssl criptation. You need set Certificate and PrivateKey tags.
+.TP 
+.BI "Certificate" = <certificate_file>
+If you active the ssl admin interface, you must set the certificate (pem file). See openssl(1) man page.
+.TP 
+.BI "PrivateKey" = <private_key_file>
+The private key file (pem file) for ssl criptation. See openssl(1) man page.
+.TP 
+.BI "Password=" <password>
+This is the password to connect to the server as a client.  If not set the  password is null.
+.TP 
+.BI "Debug=" <debug_level>
+The debug level determs the verbosity of the output.  It can be set from 0 to 4. If not set soma defaults to 3.
+.nf 
+Value  Description
+0      Log nothing
+1      Log only errors
+2      Log errors and warnings
+3      Log everything (info, error and warning)
+4      Debug (Only for developers)
+.fi 
+.TP 
+.BI "LogFile=" <logfile>
+This is where messages from soma are logged.  This an required setting and the soma daemon will not start without it. A proper file may be '/var/log/soma/soma.log'.
+.TP 
+.BI "PidFile=" <pidfile>
+Set the file for somad pid. If you don't set this item, the default directory is /var/run/somad.pid.
+.TP 
+.BI "PathItem=" "{ <path1> <path2> <etc> }"
+The list of path(s) to where items are played. The list is absolute, so if you insert some values in the list, any other list in the trasmission contains those elements (says the palinsesto.cfg file). So, in this config we can put items that \fBalways\fR are in all transmissions (like the radio station's jingles or others (see too \fBPathSpot\fR, following)).
+
+You can also add and remove paths later by using \fB"PathItem+="\fR and \fB"PathItem\-="\fR.
+.TP 
+.BI "PathSpot=" "{ <path1> <path2> <etc> }"
+Like PathItem, is the list of path(s) to where spots or jingles are played.  You can also add and remove paths later by using \fB"PathSpot+="\fR and \fB"PathSpot\-="\fR.
+.TP 
+.BI "ProgramItem=" <program_to_play_files>
+This is program used by the soma daemon to play files. If your software are in the correct PATH enviroment, you can don't set the full path. The program need to be a comand\-line one, or that can be run as it (mplayer, alsaplayer and somaplayer are good examples).
+.TP 
+.BI "OptionsItem=" <options>
+These are the options needed by \fBProgramItem\fR for play the files.
+.TP 
+.BI "ProgramStream=" <program_to_play_streams>
+This is program used by the soma daemon to play streams. If you don't set this variable, the \fBProgramItem\fR software plays any file.
+.TP 
+.BI "OptionsStream=" <options>
+These are the options needed by \fBProgramStream\fR for play streams.
+.TP 
+.BI "PathModules" = <module_path>
+This set the default path of soma modules.  The default is /usr/share/soma.
+.TP 
+.BI "Palinsesto=" <full_path_to_scheduling_file>
+This is the program schedule file for the soma daemon. This is a required option. The soma daemon will not start without it. A proper file may be '/etc/somad/palinsesto.cfg'.
+.TP 
+.BI "Spot=" <full_path_to_spot_file>
+This is the spot file for the controller for spots. This is a required option. A proper file may be '/etc/somad/spot.cfg'. If you don't use the spot controller, set this file empty.
+.TP 
+.BI "DistribuitedPath=" "{ <path1> <path2> <etc> }"
+Like PathItem and PathSpot is a list of files, directories and other for remote write of palinsesto file. With this, we have a way to have a remoted filesystem integrated in soma, for read (and only read) files from remote computers (and only from the specified paths).
+.TP 
+.BI "SymLinks" = <true/false>
+If you set this flag to "true", somad follows the symbolic link founded in the config file and in the PathItem directories or subdirectories. Default: false
+.TP 
+.BI "HostAllow" = { "ip1", "ip2", "ip3" }
+HostAllow is a list IP that can connect to the server. The syntax is a normal list of IP. If you want, you can use 'x' as jolly element:
+.nf 
+(192.168.3.x)
+
+or a conditional syntax:
+192.168.>10.x (>10 so: 11, 14, 167...)
+192.168.>=10.x (>=10 so: 10, 11, 123...)
+192.168.<20.x (<20 so: 1, 5, 9, 19...)
+192.168.<=20.x (<=20 so: 20, 18, 0...)
+192.168.!123.x (!123 so: any possibility but not 123!)
+
+or a netmask:
+192.168.10.1/29
+192.168.10.1/255.255.255.248
+
+.fi 
+.TP 
+.BI "HostDeny" = { "ip1", "ip2", "ip3" }
+Like HostAllow. Somad checks Allow list and after Deny list.
+.TP 
+.BI "Comments"
+Soma will disregard the rest of the line after '#' and '//'.  It will also disregard everything between '/*' and '*/'.
+.SH "AUTHOR"
+.nf 
+Somad written by Andrea Marchesini <bakunin@autistici.org>
+Man page written by Joshua Eichen <joshua@bitmine.net.net>
+Man page updated by Martin Zelaia <martintxo@sindominio.net> for soma\-2.4.
+.SH "SEE ALSO"
+.BR somad (1),
+.BR palinsesto.cfg (5),
+.BR somaclient (1),
+.BR somacheck (1),
+.BR somaplayer (1)
+.BR somax (1),
+.BR somax\-editor (1)
+.BR somax\-nextitem (1)
+.BR somax\-config (1)
+
+http://www.somasuite.org/

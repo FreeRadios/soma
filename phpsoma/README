@@ -1,0 +1,6 @@
+Install:
+
+	phpize
+	./configure
+	make
+	make install

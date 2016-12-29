@@ -1,0 +1,157 @@
+.\" Process this file with
+.\" groff -man -Tascii foo.1
+.TH "SOMACLIENT" "1" "22 Feb 2007" "" "User Command"
+.SH "NAME"
+somaclient \- client for the soma daemon
+.SH "SYNOPSIS"
+.B somaclient [\-S
+.I server
+.B ] [\-P
+.I port
+.B ] [\-U
+.I unix_socket
+.I ] [\-ssl] \-[pPASSWORD] [\-pw] [\-rd] [\-rp] [\-rs] [\-fp
+.I new_palinsesto
+.B ] [\-op] [\-gp] [\-gop] [\-dp] [\-fs
+.I new_spot
+.B ] [\-os] [\-gs] [\-gos] [\-ds] [\-st] [\-gi] [\-gin] [\-ns
+.I nextitem
+.B ] [\-nsl] [\-nsr
+.I ID
+.B ] [\-nsss
+.I set_spot
+.B ] [\-nsgs] [\-nsgp] [\-pn] [\-r] [\-q] [\-sk] [\-skn] [\-1] [\-0] [\-rso
+.I ID
+.B ] [\-rsp
+.I ID
+.B ] [\-sp] [\-up] [\-gps] [\-gss] [\-c] [\-h]
+.SH "DESCRIPTION"
+Somaclient provides an interface to the soma daemon. With this we can change the run parameters of Somad at runtime. 
+
+Somaclient has two modes of use, in comand\-line, or in shell mode. In both the commands are the same (in shell mode without the initials '\-'), but in shell mode it maintains a open connection with the running somad, and we can send commands to it without quit the application. 
+
+To start in shell mode, run somaclient without any option.
+
+The shell ends with the 'quit' or 'exit' commands. There is some help with the 'help' and '?' commands. Other especial shell commands are 'cd' (change to directory DIR), 'pwd' (print the current working directory) and 'ls' or 'list' (list files in DIR).
+.SH "OPTIONS"
+.IP "\-S, \-\-server" 
+Connect to this server.
+.IP "\-P, \-\-port"
+Connect to this port.
+.IP "\-U, \-\-unix" 
+Connect to this unix socket path.
+.IP "\-ssl"
+Crypt the connection
+.IP "\-pPASSWORD"
+Use the password to connect. If you don't use this flag, somaclient asks you the password.
+.IP "\-pw, \-\-password"
+Check only the password
+.IP "\-rd, \-\-readdirectory"
+Reread and remap soma's directories into memory.  Use this if files have been
+removed or changed that are used by soma.
+.IP "\-rp, \-\-readpalinsesto"
+Reread the palinsesto file and remap it's setting in memory. 
+.IP "\-rs, \-\-readspot"
+Reread the spot file and remap it's setting in memory. 
+.IP "\-fp, \-\-filepalinsesto"
+Specify a new palinsesto file.
+.IP "\-op, \-\-oldpalinsesto"
+Reload the original palinsesto file (the one in the soma.cfg file).
+.IP "\-gp, \-\-getpalinsesto"
+Show palinsesto file soma currently is using.
+.IP "\-gop, \-\-getoldpalinsesto"
+Show old palinsesto file.
+.IP "\-dp, \-\-setdefaultpalinsesto"
+Set this palinsesto as default (overwrite /etc/somad/palinsesto.cfg)
+.IP "\-fs, \-\-filespot"
+Specify a new spot file.
+.IP "\-os, \-\-oldspot"
+Reload the original spot file.
+.IP "\-gs, \-\-getspot"
+Show spot file soma currently is using.
+.IP "\-gos, \-\-getoldspot"
+Show old spot file.
+.IP "\-ds, \-\-setdefaultspot"
+Set this spot as default (overwrite /etc/somad/spot.cfg)
+.IP "\-st, \-\-status"
+Display what task the soma daemo is currently doing.
+.IP "\-gi, \-\-get_item"
+Gets the current item of somad.
+.IP "\-gin, \-\-get_item_next"
+Gets the following item of somad.
+.IP "\-ns, \-\-nextitem"
+Specify the next item runtime. Somad saves the input in a list so you can make a playlist. If we uses a ':' prior the file, somad analize this file as in the DistribuitedPath (see \fBsoma.cfg(5)\fR man page).
+.IP "\-nsl, \-\-nextitemlist"
+Show the list of nextitem.
+.IP "\-nsr, \-\-nextitemremove"
+Remove a item of nextitem list. You can use as argoment "first" and "last" for remove the first item or the last or a number [0 to max]
+.IP "\-nsss, \-\-nextitemsetspot"
+Set the iteration with spot elements. 0 disactive, 1 active.
+.IP "\-nsgs, \-\-nextitemgetspot"
+Get the iteration with spot elements. 0 disactive, 1 active.
+.IP "\-nsgp, \-\-nextitemgetpath"
+Return the list of files in a shared directory activated.
+.IP "\-pn, \-\-palinsestoname"
+Returns the name of current palinsesto.
+.IP "\-r, \-\-running"
+Display if the soma daemon is active or not.
+.IP "\-q, \-\-quit"
+Stop definitively the soma daemon. Warning! this option stop and quits the daemon (see \-\-stop option too).
+.IP "\-sk, \-\-skip"
+Skip the current item and pass to the next item.
+.IP "\-skn, \-\-skipnext"
+Skip the next item, but don't affect the current.
+.IP "\-1, \-\-stop"
+Stop playing the current palinsesto. The daemon don't quits, so we can start it with the following command (\-\-start). When a stop occurs, somad kills the player and waits for a start. When the start comes, it restarts the current trasmission from scratch. We can pass to the daemon some info about the time that it should be stopped too. This time is indicated in hours (with 'H' or 'h'), minutes ('M' or 'm'), seconds ('S' or 's'), or any mix of all (1H20m4s per example). If none is indicated, secons is the default.
+.IP "\-0, \-\-start"
+Start playing the current palinsesto after a "stop" (see above).
+.IP "\-rso, \-\-removeitem"
+Removes a item by the numeric ID.
+.IP "\-rsp, \-\-removespot"
+Removes a spot by the numeric ID.
+.IP "\-sp, \-\-setpause"
+Set a pause in Somad. When a pause occurs, Somad waits for the end of current item, stops itself and waits for a unpause. When the unpause arrives, somad restarts the transmission exactly in the previous point.
+.IP "\-up, \-\-unsetpause"
+Remove the pause flags and restart the transmission (see above).
+.IP "\-gps, \-\-getpause"
+Print the pause flags (says if a pause is active (true) or not (false)).
+.IP "\-gss, \-\-getstop"
+Print the Stop flags (says if a stop is active (true) or not (false)). 
+.IP "\-c, \-\-code"
+Instead of running a message it will return on the following error codes.
+.nf 
+0	Generic Error.
+1	Error in Parameters.
+2	Error Creating Socket.
+3	Error Resolving Host.
+4	Error Connecting to Server
+5	Communication Error Between the Somaclient and Soma daemon.
+6 	Incorrect Password.
+7	Success. 
+8	Soma Client Error.
+9	Unable to perform action in soma daemon 
+      (10 second lock timeout: only if somad is compiled with SM). 
+10	The Soma daemon is playing audio.
+11 	The Soma daemon is stopped.
+12	The Soma daemon use spot in nextitem list
+13	The Soma daemon does not use spot in nextitem list
+.IP "\-h, \-\-help"
+Output a short summary of available command line options.
+.SH "AUTHOR"
+.nf 
+Somad written by Andrea Marchesini <bakunin@autistici.org>
+Man page written by Joshua Eichen <joshua@bitmine.net.net>
+Man page updated by Martin Zelaia <martintxo@sindominio.net> for soma\-2.4.
+.SH "SEE ALSO"
+.BR somad (1),
+.BR soma.cfg (5),
+.BR palinsesto.cfg (5),
+.BR spot.cfg (5),
+.BR somacheck (1),
+.BR somaplayer (1),
+.BR somax (1),
+.BR somax\-editor (1)
+.BR somax\-nextitem (1)
+.BR somax\-config (1)
+
+http://www.somasuite.org/

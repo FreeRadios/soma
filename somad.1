@@ -1,0 +1,63 @@
+.TH SOMAD 1 "9 July 2005" somad "User Command"
+.SH NAME
+somad \- soma scheduler daemon
+.SH SYNOPSIS
+.B somad [-f 
+.I config_file
+.B ] [-b] [-u] [-h]
+.SH DESCRIPTION
+Somad is the scheduler of the suite soma. 
+.SH OPTIONS
+.IP "-f, --file" 
+Use an alternative configuration file.
+Default is
+.BR /etc/somad/soma.cfg
+.
+.IP "-b, --background"
+Detach the proccess and run in the back of the system.
+.IP "-d, --debug"
+0: quiet, 1: errors only, 2: errors and warnings, 3: errors, warnings and info messages, 4: everything (only for debugging).
+.IP "-l, --logfile"
+Set the file used for logging.
+.IP "-p, --pidfile"
+Set the pid file.
+.IP "-u, --user"
+Run the soma daemon as this user.
+.IP "-h, --help"
+Output a short summary of available command line options.
+
+Somad restart the log system with a SIGHUP.
+.SH FILES
+.I /etc/somad/soma.cfg
+.RS
+The system wide configuration file.  See
+.BR soma.cfg (5)
+for further details.
+.RE
+.I /etc/somad/palinsesto.cfg
+.RS
+The system wide scheduling file.  See
+.BR palinsesto.cfg (5)
+for further details.
+.RE
+.I /etc/somad/spot.cfg
+.RS
+The spot controller file.  See
+.BR spot.cfg (5)
+for further details.
+.SH AUTHOR
+.nf
+Somad written by Andrea Marchesini <bakunin@autistici.org>
+Man page written by Joshua Eichen <joshua@bitmine.net.net>
+Man page updated by Ilya Cassina <ilya.cassina@epfl.ch>
+.SH "SEE ALSO"
+.BR soma.cfg (5),
+.BR palinsesto.cfg (5),
+.BR spot.cfg (5),
+.BR somaclient (1),
+.BR somacheck (1),
+.BR somax (1),
+.BR somax-nextitem (1),
+.BR somax-editor (1),
+.BR somax-config (1),
+.BR somaplayer (1)

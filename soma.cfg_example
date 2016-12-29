@@ -1,0 +1,130 @@
+# This is a coment, i love comments...
+
+# User - set the user of somad. Somad changes its permission as this users.
+#User = baku
+
+# Group - set the group of somad. Somad changes its permission as this users.
+#Group = baku
+
+# Background - set somad in background.
+Background = false
+
+# UnixSocket - if this flag is true, somad actives a unix socket. Else a tcp
+# Socket.
+UnixSocket = false
+
+#UnixPath - Default /tmp/somad.sock
+
+# ServerName - set the IP to binding. Default 0.0.0.0, so any interfaces.
+#ServerName = 127.0.0.1
+
+# Port - change the default port. Default: 12521
+#Port = 12521
+
+# Listen - how many clients can admin somad in same time. Default: 5
+#Listen = 5
+
+# Ssl = true
+# Certificate = "/etc/somad/certificate.pem"
+# PrivateKey = "/etc/somad/private.pem"
+#
+# For create a privatekey and a certificate file, use this commands:
+# cd /etc/somad
+# openssl genrsa -out private.pem 1024
+# openssl req -new -x509 -key private.pem -out certificate.pem
+
+# Password - password for admin. If you don't set this variable, the password
+# is empty.
+Password = "passwd"
+
+# Debug - change the verbouse in the log. The value is 0 to 4.
+# 0 -> Disactive
+# 1 -> Only Error
+# 2 -> Error and Warning
+# 3 -> Info, error and warning
+# 4 -> Debug (only for developers)
+Debug = 3
+
+# LogFile - Set the LogFile
+LogFile = "/var/log/soma.log"
+
+# PidFile - Set the file for the pid
+PidFile = "/var/run/somad.pid"
+
+# PathItem - Like in palinsesto.cfg item, this is the list is absolute, so
+# if you insert some values in the list, any other list in the trasmission
+# contains those elements.
+
+#PathItem = {
+#  "/mp3/ALL/",
+#  "/ogg",
+#  "/file.mp3",
+#  "http://server.net/audio.ogg"
+#}
+
+# PathSpot - like PathItem.
+#PathSpot = {
+#  "/home/spot/ogg",
+#  "/home/other_spot"
+#}
+
+# This program is the default software for the "Files". If your software are
+# in the correct PATH enviroment, you can don't set the full path:
+ProgramItem = "mplayer"
+# Some parameters...
+#OptionsItem = "-ao oss"
+
+# If you want use another software per streaming, this is the variable:
+#ProgramStream = "/usr/bin/somaplayer"
+#OptionsStream = "-ao oss -b 2048"
+# If you don't set this variable, the ProgramItem software plays any file.
+
+
+# PathModules - it is the path of modules. Default: /usr/share/soma/
+#PathModules = "/usr/share/soma"
+
+# The palinsesto file:
+Palinsesto = "/etc/somad/palinsesto.cfg"
+Spot = "/etc/somad/spot.cfg"
+
+DistribuitedPath = {
+  "/home/"
+}
+
+# If this flag is true, somad follows the symbolic links founded in PathItem,
+# PathSpot and Path list of directories and in the subdirectories. 
+# Default is: false.
+SymLinks = false
+
+# HostAllow is a list IP that can connect to the server. The syntax is a normal
+# list of IP. If you want, you can use 'x' as jolly element (192.168.3.x) or 
+# a conditional syntax:
+# 192.168.>10.x (>10 so: 11, 14, 167...)
+# 192.168.>=10.x (>=10 so: 10, 11, 123...)
+# 192.168.<20.x (<20 so: 1, 5, 9, 19...)
+# 192.168.<=20.x (<=20 so: 20, 18, 0...)
+# 192.168.!123.x (!123 so: any possibility but not 123!)
+# and netmask structure:
+# 192.168.10.1/29
+# 192.168.10.1/255.255.255.248
+
+#HostAllow = {
+#  "192.168.0.10",
+#  "192.168.0.>20",
+#  "192.x.4.4",
+#  "192.168.10.2/31",
+#  "192.168.10.1/255.255.255.248"
+#}
+#
+# Like Allow, the Deny list:
+#
+#HostDeny = {
+#  "192.168.0.10",
+#  "192.168.0.>20",
+#  "192.x.4.4",
+#  "192.168.10.1/255.255.255.255" # like: "x.x.x.x" or ">=0.>=0.>=0.>=0"
+#}
+#
+# Somad checks Allow list and after Deny list.
+
+# EOF

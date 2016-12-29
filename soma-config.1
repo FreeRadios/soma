@@ -1,0 +1,33 @@
+.TH soma-config 1 "9 July 2005" "soma" "soma-config manual"
+.SH NAME
+soma-config \- Get information about a soma installation
+.SH SYNOPSIS
+.B soma-config [options]
+.SH DESCRIPTION
+.B soma-config
+displays information about a previous soma installation.
+.SH OPTIONS
+.IP "--prefix"
+Show the prefix path of soma
+.IP "--version"
+Show the version of soma
+.IP "--cflags"
+Set of compiler options (CFLAGS) to use when compiling files that use
+soma.
+.IP "--libs"
+Shows the complete set of libs and other linker options you will need in order
+to link your application with soma.
+.IP "--ssl"
+Return 0 if soma has not ssl support, 1 if soma is compiled with libssl.
+.SH "EXAMPLES"
+What linker options do I need when I link with soma?
+
+  soma-config --libs
+
+What compiler options do I need when I compile using soma functions?
+
+  soma-config --cflags
+.SH SEE ALSO
+.BR somad (1)
+.SH AUTHOR
+This manual page was written by Andrea Marchesini <bakunin@autistici.org>.

@@ -1,0 +1,17 @@
+<!ELEMENT SpotXML	(Spot*)>
+
+<!ELEMENT Spot		(Description,
+			 Start,
+			 Stop,
+			 TimeContinued,
+			 Repeat,
+			 Path)>
+
+<!ELEMENT Description	(#PCDATA)>
+<!ELEMENT Start		(#PCDATA)>
+<!ELEMENT Stop		(#PCDATA)>
+<!ELEMENT TimeContinued	(#PCDATA)>
+<!ELEMENT Repeat	(#PCDATA)>
+<!ELEMENT Path		(item*)>
+<!ELEMENT item 		(#PCDATA)>
+

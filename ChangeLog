@@ -1,0 +1,165 @@
+18.02.2007		soma	2.4
+	NextItem support
+	Song -> Item
+	ffmpeg as external library
+	No XmlSyntax
+	RandomItem and RandomSpot
+	phpsoma and pysoma with enable flags
+	manpages updated
+	pause
+
+19.07.2006		soma	2.3
+	Tnx to klaus for a little bug in the libsoma
+	Before group and after user
+	31th of month
+
+08.05.2006		soma	2.2
+	a little bug fixes
+
+27.10.2005		soma	2.1
+	dtd for palinsesto and spot file
+	ffmpeg for stat on the distribuited file
+	hash table for stat and stat_dir
+	cvs opened
+	PreSpot and PostSpot
+
+16.06.2005		soma	2.0
+	Release 1.14 -> 2.0
+
+09.06.2005		soma	1.14
+	Spot Controller
+	Spot file Like Palinsesto file (upload, change,...)
+	New protocol layout
+	Nextsong iteration with spot controller (or pathspot)
+	palinsesto and spot files on xml syntax
+	playlist pls and m3u support
+	ssl support
+	unix socket support
+	PATH enviroment used for programsong and programstream.
+	SymLinks function
+	module_list funcion
+	Deny and Allow list
+
+08.03.2005		soma	1.13
+	skip to next song
+	nextsong remove before play
+	ModuleData
+	Set default palinsesto
+	
+15.02.2005		soma	1.12
+	bugfixes about changes of palinsesto file
+	wait after some kill
+
+05.02.2005		soma	1.11
+	autopath for nextsong set
+	scandir vs readdir
+	relative path to distribuited paths
+	mutex bug fixed
+	libtoolize
+
+05.01.2005		soma	1.10
+	configure.ac with check for MacOSX
+	nextsong remove/list/insert options
+	change the command in somaclient shell mode
+	distribuited fs
+	libsoma
+	log.c day array by <megabug@autistici.org>
+
+13.12.2004		soma	1.9
+	little check in somad about ProgramSong and ProgramSpot
+	bug fixed in nextsong options when it is out of palinsesto
+	nextsong list
+
+29.11.2004		soma	1.8
+	another algorithm for scheduler!
+	somaclient shell history
+	somad: new layout of Start and Stop string
+
+22.11.2004		soma	1.7
+	new algorithm for scheduler
+	bug fixed - somaclient (shell mode)
+	
+14.11.2004		soma	1.6
+	add timer filter for star and stop trasmissions
+	
+22.09.2004		soma	1.4
+	somacheck fixed bug
+
+07.01.2004		soma	1.2
+	debuggati i moduli e scritto somadiff.
+	cambiati i segnali quando parte il programma di playing
+	in modo da supportare pure mplayer.
+	RatioSong e RatioSpot al posto di Ratio.
+	Abbandonato i syslog per una gestione dei log interna.
+
+07.01.2004		soma	1.0
+	debuggati i moduli e scritto somadiff.
+	cambiati i segnali quando parte il programma di playing
+	in modo da supportare pure mplayer.
+	RatioSong e RatioSpot al posto di Ratio.
+	Abbandonato i syslog per una gestione dei log interna.
+
+02.01.2004		soma	0.99
+	aggiunto per ogni trasmissione il Jingle.
+	nasce soma come link a somaclient.
+	supporto moduli per somad.
+	Migliorato il codice.
+	
+02.12.2003		soma	0.98
+	Corretti un po' di bugs.
+	Abilitazione file URL sia in PathSong e sia in PathSpot con
+	lancio di ProgramStream all'occorrenza.
+	Spostato Ratio dentro al palinsesto cosi' da renderlo ancor piu'
+	configurabile
+
+22.11.2003		soma	0.97
+	somaclient -ppassword per utilizzarlo meglio a riga di comando
+	somaclient --start e --stop per stoppare a riattivare somad.
+	Commenti al codice.
+	Inserita l'opzione -c in somaclient per avere i messaggi in formato
+	codice (utile per un eventuale frontend).
+	Ottimizzazioni nella gestione delle directory e files in somad.
+
+16.11.2003		soma	0.96
+	Makefile
+	Sostanziali modifiche a somaclient aggiundo readline e
+	getpalinsesto.
+	Correzione bugs del palinsesto.
+
+14.11.2003		soma	0.95
+	Nuovo algoritmo del palinsesto circolare.
+	Correzione bugs riguardo al socket.
+	Status di uscita dei programmi.
+	Documentazione in tex e html.
+	Lo status di somad consultabile da somaclient.
+	Debug a + livelli.
+	/var/run/soma.pid.
+	Il solo check della password con somaclient.
+	Caricare palinsesto con somaclient o prendere quello di default.
+	ServerName per il binding della connessione
+	
+11.11.2003		soma	0.94
+	Socket TCP per l'amministrazione.
+	Eliminato il sistema dei segnali e impolpito la gestione dei mutex
+	per le strutture dati.
+	Nasce il supporto per lo Streaming
+
+09.11.2003		soma	0.93
+	Syslogd per i log.
+	Nasce somaclient, somacheck e soma diventa somad.
+	Palinsesto con PathSong di default + per ogni trasmissione. Idem
+	per le PathSpot e Random.
+
+31.09.2003 		soma	0.92
+	Gestione del file attraverso libconfuse.
+	Gestione di un palinsteso.
+	Divisione in + file.
+	Implementazione prima di uno unix socket per la gestione del demone.
+
+	
+30.09.2003		soma	0.91
+	Gestione di + PathSong e + PathSpot. Aggiunta di Background, Random,
+	Program e Options nel file di configurazione.
+	Random a richiesta.
+	Messo on line su http://autistici.org/bakunin
+	Supporto di Directory e di File come PathSong e PathSport
